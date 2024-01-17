@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "LeitnerSystem",
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.analysis.extraPaths": [
+			"./Domain"
+		]
+	}
+}	
