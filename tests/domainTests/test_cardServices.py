@@ -2,7 +2,8 @@
 import unittest
 from unittest.mock import MagicMock, patch
 
-from domain.repository.cardRepository import CardRepository
+from services.cardServices import CardRepository
+from domain.models.cardmodel.user_input import UserInput
 from application.services.card_services import CardService
 
 class TestCardService(unittest.TestCase):
@@ -13,10 +14,12 @@ class TestCardService(unittest.TestCase):
 
     def test_create_card(self):
         # Teste la création d'une carte
-        question = "Test Question"
-        answer = "Test Answer"
-        tags = ["Test"]
-        card = self.service.create_card(question, answer, tags)
+        userinput = UserInput
+        userinput.question = "Test Question"
+        userinput.answer = "Test Answer"
+        userinput.tags = ["Test"]
+        
+        card = self.service.create_card(userinput)
         # Assurez-vous que la carte a été ajoutée au repository
         self.repository.add_card.assert_called_once_with(card)
 

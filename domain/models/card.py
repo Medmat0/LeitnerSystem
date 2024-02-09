@@ -10,7 +10,7 @@ class Category(Enum):
     FIFTH = 5
     SIXTH = 6
     SEVENTH = 7
-    LEARNED = 10   
+    DONE = 10   
 
 
 class Card:

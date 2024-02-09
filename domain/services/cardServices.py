@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 from typing import List
-from  domain.models.cardmodel.card import Card
-from  domain.models.cardmodel.validation_card import ValidationCard
+from  domain.models.card import Card
+from  domain.models.validation_card import ValidationCard
 
 
 class CardRepository(ABC):  
@@ -11,7 +11,7 @@ class CardRepository(ABC):
 
 
     @abstractmethod
-    def add_card(self, valid_card = ValidationCard ) -> Card:
+    def add_card( valid_card :ValidationCard ) -> Card:
          return  Card(
             question=valid_card.question,
             answer=valid_card.answer,

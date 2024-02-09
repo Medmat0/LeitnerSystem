@@ -2,7 +2,7 @@
 import unittest
 from unittest.mock import MagicMock
 from domain.models.cardmodel.card import Card
-from domain.repository.cardRepository  import CardRepository
+from services.cardServices  import CardRepository
 
 class TestCardRepository(unittest.TestCase):
     def setUp(self):
