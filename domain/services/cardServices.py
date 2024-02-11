@@ -1,21 +1,21 @@
 from abc import ABC, abstractmethod
 from typing import List
 from  domain.models.card import Card
-from  domain.models.validation_card import ValidationCard
+from  domain.models.userInput import UserInput
 
 
-class CardRepository(ABC):  
+class CardServices(ABC):  
 
     def __init__(self):
         self.cards = []
 
 
     @abstractmethod
-    def add_card( valid_card :ValidationCard ) -> Card:
+    def add_card( userInput :UserInput ) -> Card:
          return  Card(
-            question=valid_card.question,
-            answer=valid_card.answer,
-            tags=valid_card.tags
+            question=userInput.question,
+            answer=userInput.answer,
+            tags=userInput.tags
         )
             
 

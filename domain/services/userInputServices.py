@@ -1,59 +1,50 @@
 
-from .user_input import UserInput
+from models.userInput import UserInput
 from typing import List
+from abc import ABC , abstractmethod
+from cardServices import CardServices
 
 def isEmpty(input : str):
         if(input.strip()):
             return False
         else:
-            return True
-
-class ValidationCard:
+            return True  
+    
+class UserInputServices(ABC):
   
-
     def __init__(self, question: str, answer: str, tags: List[str] = None):
         self.question = question
         self.answer = answer
         self.tags = tags if tags else []
-  
-    def validate(UserInput): 
-        if not isEmpty(UserInput.question) or not isEmpty(UserInput.answer):
-            raise ValueError("Toutes les champs doivent être remplis.") 
-        else :
-             return ValidationCard(
-                  question=UserInput.question,
-                  answer=UserInput.answer,
-                  tags=UserInput.tags
-             )
+
         
-    #UserInput Service for notvalid card 
+    @abstractmethod
     def isNotValid(user_input : UserInput):
        if  isEmpty(user_input.question):
-           return ValueError("Please fill up the question !") , True
+           return ValueError("Please fill up the question !") 
        
        if  isEmpty(user_input.answer):
-           return ValueError("Please fill up the answer !") , True
+           return ValueError("Please fill up the answer !") 
        
        if  isEmpty(user_input.answer,user_input.question):
-           return ValueError("Must fill up question and answer please !") , True
+           return ValueError("Must fill up question and answer please !") 
        
-    #UserInput Service for valid card
+    @abstractmethod
     def isValid(user_input : UserInput):
        if isEmpty(UserInput.question) or  isEmpty(UserInput.answer):
             return False
        else:
             return True
        
-    #CreateValid card service          
+    @abstractmethod
     def createValidCard(user_input : UserInput) : 
-        return  ValidationCard(
+        return  CardServices.add_card(
                   question=user_input.question,
                   answer=user_input.answer,
                   tags=user_input.tags
              ) 
     
-         
-    
+   
         
    
 
