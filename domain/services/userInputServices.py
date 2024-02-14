@@ -1,8 +1,6 @@
+""" 
 
-from models.userInput import UserInput
-from typing import List
-from abc import ABC , abstractmethod
-from cardServices import CardServices
+
 
 def isEmpty(input : str):
         if(input.strip()):
@@ -10,12 +8,10 @@ def isEmpty(input : str):
         else:
             return True  
     
-class UserInputServices(ABC):
+class UserInputServices:
+
   
-    def __init__(self, question: str, answer: str, tags: List[str] = None):
-        self.question = question
-        self.answer = answer
-        self.tags = tags if tags else []
+
 
         
     @abstractmethod
@@ -57,3 +53,4 @@ class UserInputServices(ABC):
         #else    validcard.IsNotValid
 
 
+ """
