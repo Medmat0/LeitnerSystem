@@ -1,0 +1,182 @@
+openapi: 3.0.3
+info:
+  title: Leitner system
+  description: This API aim to provide feature to manage a graphical interface for
+    Leitner System.
+  version: 1.0.0
+servers:
+- url: http://localhost:8080
+  description: Local server
+paths:
+  /cards:
+    get:
+      tags:
+      - Cards
+      summary: Get all cards
+      description: "Used to fetch every cards with given tags. If no tags are provided,\
+        \ will fetch all cards."
+      operationId: cards_get
+      parameters:
+      - name: tags
+        in: query
+        description: "Tags of cards to find. If not present, all cards will be found."
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: array
+          items:
+            type: string
+        example: "tag1,tag2"
+      responses:
+        "200":
+          description: Found cards by tag query
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Card'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.cards_controller
+    post:
+      tags:
+      - Cards
+      summary: Create a card
+      description: Used to create a new card in the system. A new card will be present
+        in the next quizz.
+      operationId: cards_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CardUserData'
+      responses:
+        "201":
+          description: Created card
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Card'
+        "400":
+          description: Bad request
+      x-openapi-router-controller: swagger_server.controllers.cards_controller
+  /cards/quizz:
+    get:
+      tags:
+      - Learning
+      summary: Cards for the day
+      description: "Used to fetch all cards for a quizz at a given date. If no date\
+        \ is provided, quizz will be for today."
+      operationId: cards_quizz_get
+      parameters:
+      - name: date
+        in: query
+        description: "Date of quizz. If not provided, date will be today."
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+          format: date
+        example: 2023-11-03
+      responses:
+        "200":
+          description: All cards of quizz for today
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Card'
+                x-content-type: application/json
+      x-openapi-router-controller: swagger_server.controllers.learning_controller
+  /cards/{cardId}/answer:
+    patch:
+      tags:
+      - Learning
+      summary: Answer a question
+      description: Used to answer a question. Body indicate if user has answered correctly
+        or not.
+      operationId: cards_card_id_answer_patch
+      parameters:
+      - name: cardId
+        in: path
+        description: Id of answered card.
+        required: true
+        style: simple
+        explode: false
+        schema:
+          $ref: '#/components/schemas/CardId'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cardId_answer_body'
+      responses:
+        "204":
+          description: Answer has been taken into account
+        "400":
+          description: Bad request
+        "404":
+          description: Card not found
+      x-openapi-router-controller: swagger_server.controllers.learning_controller
+components:
+  schemas:
+    CardId:
+      type: string
+      description: Generated identifier of a card
+      example: 6c10ad48-2bb8-4e2e-900a-21d62c00c07b
+    CardUserData:
+      required:
+      - answer
+      - question
+      type: object
+      properties:
+        question:
+          type: string
+          description: Question to be asked to the user during a quizz
+          example: What is pair programming ?
+        answer:
+          type: string
+          description: Expected answer for the question
+          example: A practice to work in pair on same computer.
+        tag:
+          type: string
+          description: A tag to group cards on same topic
+          example: Teamwork
+    Card:
+      allOf:
+      - required:
+        - category
+        - id
+        type: object
+        properties:
+          id:
+            $ref: '#/components/schemas/CardId'
+          category:
+            $ref: '#/components/schemas/Category'
+      - $ref: '#/components/schemas/CardUserData'
+    Category:
+      type: string
+      description: Category of card indicating how many times you answered it and
+        appearance frequency
+      example: FIRST
+      enum:
+      - FIRST
+      - SECOND
+      - THIRD
+      - FOURTH
+      - FIFTH
+      - SIXTH
+      - SEVENTH
+      - DONE
+    cardId_answer_body:
+      required:
+      - isValid
+      type: object
+      properties:
+        isValid:
+          type: boolean
+          description: "True if user has answered correctly, false otherwise"
+
