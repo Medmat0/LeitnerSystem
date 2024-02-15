@@ -3,7 +3,8 @@ from models.Card import Card
 from models.CardUserData import CardUserData
 from models.CardId import CardId
 import uuid
-
+from infrastructure.mapper.MapCard import map_card_to_server
+from infrastructure.repository.CreateCardServer import CreateCardRepository
 
 
  # to verify that all champ is not empty
@@ -17,18 +18,24 @@ def isEmpty(input : str):
 class CreateCardService:
      
    
-    def CreateCard(cardUserData : CardUserData) -> Card:
+    def CreateCard(self,cardUserData : CardUserData) -> Card:
         if isEmpty(cardUserData.question) or  isEmpty(cardUserData.answer):
             ValueError("Make sure to fill all champs please !!")
         else:
             randomId = str(uuid.uuid4())
-            return Card(
+            newCard = Card(
                         id = CardId(id = randomId),
                         category = Category.FIRST,
                         question=cardUserData.question,
                         answer=cardUserData.answer,
                         tag=cardUserData.tag
                         )
+            
+            # Save card in infra db 
+            cardEntity = map_card_to_server(newCard)
+            createCardRepository = CreateCardRepository 
+            createCardRepository.save_card(cardEntity)  
+            return  newCard
         
         
     

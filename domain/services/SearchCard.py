@@ -1,8 +1,8 @@
 
 from models.Card import Card
 from typing import List
-from server.repository.SearchCardServer import SearchCardServer
-from server.mapper.MapCard import map_card_entity_to_domain
+from infrastructure.repository.SearchCardServer import SearchCardServer
+from infrastructure.mapper.MapCard import map_card_entity_to_domain
 
 class SearchCardService: 
  
