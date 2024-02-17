@@ -1,6 +1,6 @@
 from datetime import datetime
 from typing import List
-from entity.CardEntity import CardEntity
+from infrastructure.entity.CardEntity import CardEntity
 
 
 class QuizzCardServer:

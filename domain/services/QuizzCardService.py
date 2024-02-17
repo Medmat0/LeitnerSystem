@@ -1,5 +1,5 @@
 from datetime import datetime
-from models.Card import Card
+from domain.models.Card import Card
 from typing import List
 from infrastructure.repository.QuizzCardServer import QuizzCardServer
 from infrastructure.mapper.MapCard import map_card_entity_to_domain

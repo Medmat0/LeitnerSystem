@@ -1,4 +1,4 @@
-from entity.CardEntity import CardEntity , db
+from  infrastructure.entity.CardEntity import CardEntity , db
 
 class AnswerCardServer:
 

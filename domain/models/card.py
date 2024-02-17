@@ -1,8 +1,8 @@
 from typing import  Optional
 from datetime import datetime
 from dataclasses import dataclass
-import CardId
-import Category
+from domain.models.CardId import CardId
+from domain.models.Category import Category
 
 
 @dataclass

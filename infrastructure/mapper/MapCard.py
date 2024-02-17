@@ -1,4 +1,4 @@
-from entity.CardEntity import CardEntity
+from infrastructure.entity.CardEntity import CardEntity
 from domain.models.Card import Card
 from domain.models.CardId import CardId
 

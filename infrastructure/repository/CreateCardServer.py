@@ -1,4 +1,4 @@
-from entity.CardEntity import db, CardEntity
+from infrastructure.entity.CardEntity import db, CardEntity
 
 class CreateCardRepository:
     def save_card(self, card_entity: CardEntity) -> None:
