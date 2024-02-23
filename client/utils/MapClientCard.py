@@ -5,6 +5,16 @@ from domain.models.CardUserData import CardUserData
 
 
 def map_domain_card_to_client_card (card : Card) -> ClientCard:
+   """"
+   Fonction pour mapper une carte du domaine vers une carte cliente.
+
+   Args:
+       card (Card): La carte du domaine à mapper.
+
+   Returns:
+       ClientCard: La carte cliente mappée.
+      
+   """
    client_card = ClientCard
    client_card.id = card.id
    client_card.answer = card.answer
@@ -15,6 +25,15 @@ def map_domain_card_to_client_card (card : Card) -> ClientCard:
 
 
 def serialize_client_card(client_card : ClientCard) :
+      """
+       Fonction pour sérialiser une carte cliente en un dictionnaire JSON.
+
+       Args:
+       client_card (ClientCard): La carte cliente à sérialiser.
+
+       Returns:
+       dict: Le dictionnaire JSON représentant la carte cliente.
+      """
    
       return {
             'id': client_card.id,
@@ -26,6 +45,16 @@ def serialize_client_card(client_card : ClientCard) :
 
 
 def deserialize_user_data(json_data: Dict) -> CardUserData:
+
+      """
+       Fonction pour désérialiser les données JSON en un objet CardUserData.
+
+        Args:
+           json_data (Dict): Les données JSON à désérialiser.
+
+      Returns:
+       CardUserData: L'objet CardUserData désérialisé.
+      """
       return CardUserData(question=json_data['question'],
         answer=json_data['answer'],
         tag=json_data['tag'])

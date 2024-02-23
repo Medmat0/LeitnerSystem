@@ -26,7 +26,7 @@ class TestAnswerCardService(unittest.TestCase):
 
     def test_wrong_answer(self):
       
-        self.assertEqual(self.answerCardService.wrongAnswer("ANY_CATEGORY"), "FIRST")
+        self.assertEqual(self.answerCardService.wrongAnswer(), "FIRST")
 
     def test_answer_card_correct(self):
        

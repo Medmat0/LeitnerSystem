@@ -10,6 +10,16 @@ from flask import Flask
 
 class SearchCardService: 
     def get_cards_by_tag(self, tags: List[str] ) -> List[Card]:
+
+        """
+        Récupère les cartes en fonction des balises spécifiées.
+
+        Args:
+            tags (List[str]): La liste des balises pour filtrer les cartes.
+
+        Returns:
+            List[Card]: La liste des cartes correspondant aux balises spécifiées.
+        """
       
         search_card_server = SearchCardServer()
         cards = []      

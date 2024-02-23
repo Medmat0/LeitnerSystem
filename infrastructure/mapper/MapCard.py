@@ -4,6 +4,16 @@ from domain.models.Card import Card
 
 
 def map_card_to_server(card: Card) -> CardEntity:
+      
+    """
+    Fonction pour mapper une carte du domaine vers une entité de carte serveur.
+
+    Args:
+        card (Card): La carte du domaine à mapper.
+
+    Returns:
+        CardEntity: L'entité de carte serveur mappée.
+    """
     return CardEntity(
         id=card.id,
         category=card.category.name,
@@ -15,6 +25,16 @@ def map_card_to_server(card: Card) -> CardEntity:
 
 
 def map_card_entity_to_domain(card_entity: CardEntity) -> Card:
+
+    """
+    Fonction pour mapper une entité de carte serveur vers une carte du domaine.
+
+    Args:
+        card_entity (CardEntity): L'entité de carte serveur à mapper.
+
+    Returns:
+        Card: La carte du domaine mappée.
+    """
     return Card(
         id= card_entity.id,
         category=card_entity.category ,

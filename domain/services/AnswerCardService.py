@@ -9,6 +9,16 @@ class AnswerCardService:
         self.answerCardServer = AnswerCardServer()
 
     def correctAnswer(self, category):
+        """
+        Détermine la catégorie suivante si la réponse est correcte.
+
+        Args:
+            category (str): La catégorie actuelle de la carte.
+
+        Returns:
+            str: La catégorie suivante si elle existe, sinon None.
+        """
+
         next_category = {
             "FIRST": "SECOND",
             "SECOND":"THIRD",
@@ -23,11 +33,31 @@ class AnswerCardService:
         
 
           
-    def wrongAnswer(self, category : str):
-        category = "FIRST"
-        return category
+    def wrongAnswer(self):
+        """
+        Définit la catégorie comme la première en cas de réponse incorrecte.
+
+        Args:
+            category (str): La catégorie actuelle de la carte.
+
+        Returns:
+            str: La catégorie "FIRST".
+        """
+        
+        return "FIRST"
     
     def answer_card(self, card_id: str, is_correct: bool):
+         
+        """
+        Traite la réponse donnée à une carte.
+
+        Args:
+            card_id (str): L'identifiant de la carte.
+            is_correct (bool): Indique si la réponse est correcte.
+
+        Returns:
+            int: Le code de statut HTTP indiquant le résultat de l'opération.
+        """
         card_entity = self.answerCardServer.getCardById(card_id)
         if not card_entity:
             return 404
@@ -39,7 +69,7 @@ class AnswerCardService:
 
          
         else:
-            card_entity.category = self.wrongAnswer(card_entity.category)   
+            card_entity.category = self.wrongAnswer()   
             self.answerCardServer.updateCard(card_entity)
             return 400
             
