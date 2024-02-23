@@ -7,9 +7,9 @@ from domain.services.AnswerCardService import AnswerCardService
 from domain.services.QuizzCardService import QuizzCardService
 from domain.services.SearchCardService import SearchCardService
 
-from MapClientCard import map_domain_card_to_client_card
-from MapClientCard import serialize_client_card
-from MapClientCard import deserialize_user_data
+from client.utils.MapClientCard import map_domain_card_to_client_card
+from client.utils.MapClientCard import serialize_client_card
+from client.utils.MapClientCard import deserialize_user_data
 
 
 app = Flask(__name__)
