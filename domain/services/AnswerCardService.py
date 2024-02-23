@@ -6,25 +6,43 @@ from infrastructure.repository.AnswerCardServer import AnswerCardServer
 class AnswerCardService:
 
     def __init__(self) -> None:
-        self.answerCardServer = AnswerCardServer
+        self.answerCardServer = AnswerCardServer()
 
-    def correct_answer(self, cardEntity) -> None:
-        if cardEntity.category == Category.SEVENTH:
-            cardEntity.category = Category.DONE
-        elif cardEntity.category != Category.SEVENTH:
-            cardEntity.category = Category(cardEntity.category.value + 1)
+    def correctAnswer(self, category):
+        next_category = {
+            "FIRST": "SECOND",
+            "SECOND":"THIRD",
+            "THIRD": "FOURTH",
+            "FOURTH":"FIFTH",
+            "FIFTH": "SIXTH",
+            "SIXTH": "SEVENTH",
+            "SEVENTH": "DONE"
+        }.get(category)
+        if next_category:
+            return next_category
+        
+
+          
+    def wrongAnswer(self, category : str):
+        category = "FIRST"
+        return category
     
-    def wrong_answer(self, cardEntity) -> None:
-        cardEntity.category = Category.FIRST
-    
-    def answer_card(self, cardId: str, is_correct: bool):
-        cardEntity = self.answerCardServer.getCardById(cardId)
-        if not cardEntity:
-            raise "NOT FOUND"
+    def answer_card(self, card_id: str, is_correct: bool):
+        card_entity = self.answerCardServer.getCardById(card_id)
+        if not card_entity:
+            return 404
         
         if is_correct:
-            self.correctAnswer(cardEntity)
+            card_entity.category = self.correctAnswer(card_entity.category)
+            self.answerCardServer.updateCard(card_entity)
+            return 204
+
+         
         else:
-            self.wrongAnswer(cardEntity)   
-        self.answerCardServer.updateCard(cardEntity)
+            card_entity.category = self.wrongAnswer(card_entity.category)   
+            self.answerCardServer.updateCard(card_entity)
+            return 400
+            
+       
     
+

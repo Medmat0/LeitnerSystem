@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from flask import Flask
 
 db = SQLAlchemy()
 
@@ -9,4 +10,4 @@ class CardEntity(db.Model):
     question = db.Column(db.String(255), nullable=False)
     answer = db.Column(db.String(255), nullable=False)
     tag = db.Column(db.String(50), nullable=False)
-    date_next_response = db.Column(db.DateTime, default=datetime.now())
+    date_next_response = db.Column(db.Date, default=datetime.now())
