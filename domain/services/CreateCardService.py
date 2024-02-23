@@ -29,7 +29,7 @@ class CreateCardService:
    
     def CreateCard(self,card_userdata : CardUserData) -> Card:
         if isEmpty(card_userdata.question) or  isEmpty(card_userdata.answer):
-            ValueError("Make sure to fill all champs please !!")
+            raise ValueError("Make sure to fill all champs please !!")
         else:
             randomId = str(uuid.uuid4())
             newCard = Card(
