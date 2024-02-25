@@ -20,6 +20,12 @@ Pour lancer l'application, exécutez le fichier CardController.py avec Python :
 
 python controller.py
 ```
+
+## Tester avec Postman
+L'API peut également être testée à l'aide de Postman. Importez le fichier Postman fourni dans ce projet et utilisez-le pour tester les différentes routes de l'API.
+
+## Swagger
+Pour une documentation interactive de l'API, utilisez le fichier Swagger fourni dans ce projet. Copiez le contenu du fichier Swagger dans l'éditeur Swagger en ligne sur https://editor.swagger.io/ pour visualiser et interagir avec les différentes routes de l'API.
 Licence
 
 @ELMATROR Yassine
