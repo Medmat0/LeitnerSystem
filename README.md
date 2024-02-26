@@ -2,7 +2,7 @@
 
 ## Objectif
 
-Ce projet consiste à concevoir et développer une application web et son back-end en appliquant les bonnes pratiques de lisibilité et de maintenabilité, ainsi que les principes SOLID, le DDD et l'architecture Hexagonale. L'objectif principal est la qualité du code, évaluée en fonction de critères tels que la fiabilité des fonctionnalités, la qualité du nommage et de la lisibilité du code, la couverture de test, etc.
+Ce projet consiste à concevoir et développer une application web et son back-end en appliquant les bonnes pratiques de lisibilité et de maintenabilité, ainsi que les principes SOLID, le DDD et l'architecture Hexagonale.
 ## Installation
 
 Pour installer les dépendances du projet, exécutez la commande suivante :
