@@ -8,4 +8,4 @@ class ClientCard:
     category : Category
     question: str
     answer: str
-    tags: str 
+    tags: str   
