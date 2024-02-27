@@ -18,7 +18,7 @@ Pour lancer l'application, exécutez le fichier CardController.py avec Python :
 
 ```bash
 
-python controller.py
+python CardController.py
 ```
 
 ## Tester avec Postman
