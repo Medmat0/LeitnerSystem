@@ -27,6 +27,9 @@ search_card_service = SearchCardService()
 
 class Cards(Resource):
     def get(self):
+        """
+        Récupère une liste de cartes en fonction des tags fournis en paramètre.
+        """
         tags = request.args.getlist('tags')
         if not tags : 
             tags = ''
@@ -40,6 +43,9 @@ class Cards(Resource):
         
         
     def post(self):
+        """
+        Crée une nouvelle carte à partir des données fournies.
+        """
         card_data = request.get_json()
         card_userdata = deserialize_user_data(card_data)
         card = create_card_service.CreateCard(card_userdata)
@@ -55,6 +61,9 @@ api.add_resource(Cards, '/cards')
 
 class Quizz(Resource):
     def get(self):
+        """
+        Récupère une liste de cartes pour un quiz à la date spécifiée.
+        """
         quizz_date = request.args.get('date')
         cards = quizz_card_service.fetch_cards_for_quiz(quizz_date)
         client_cards = [map_domain_card_to_client_card(card) for card in cards]
@@ -68,6 +77,9 @@ api.add_resource(Quizz, '/cards/quizz')
 
 class Answer(Resource):
     def patch(self, card_id):
+        """
+        Met à jour la réponse d'une carte spécifique.
+        """
         try:
             card_uuid = str(card_id)
             
